@@ -24,6 +24,7 @@ public class UserService {
 
     public ResponseEntity<UserDto> createUser(UserDto userDto) throws NoSuchAlgorithmException, InvalidKeySpecException {
         UserEntity userEntity = modelMapper.map(userDto,UserEntity.class);
+        log.info("UserEntity: {}", userEntity);
 //        byte[] salt = PasswordHasher.generateSalt();
 //        userEntity.setPassword(PasswordHasher.hashPassword(userEntity.getPassword().toCharArray(),salt));
         userRepository.save(userEntity);
