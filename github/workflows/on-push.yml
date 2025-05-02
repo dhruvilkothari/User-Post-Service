@@ -1,0 +1,16 @@
+name: On Push Message
+
+on:
+  push:
+    branches:
+      - main  # or whatever branch you want
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print push message
+        run: echo "You pushed something."

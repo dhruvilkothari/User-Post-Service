@@ -33,4 +33,10 @@ public class PostService {
         List<PostDto> postDtoList = postEntityList.stream().map(postEntity -> modelMapper.map(postEntity, PostDto.class)).toList();
         return ResponseEntity.ok(postDtoList);
     }
+
+    public ResponseEntity<PostDto> getPostById(Long id) {
+        PostEntity postEntity = postRepository.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
+        PostDto postDto = modelMapper.map(postEntity, PostDto.class);
+        return ResponseEntity.ok(postDto);
+    }
 }
