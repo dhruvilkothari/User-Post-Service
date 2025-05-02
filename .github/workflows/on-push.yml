@@ -6,7 +6,7 @@ on:
       - main  # or whatever branch you want
 
 jobs:
-  Sonar Job:
+  sonar-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
