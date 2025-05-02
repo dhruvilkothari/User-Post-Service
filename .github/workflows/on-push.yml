@@ -3,7 +3,7 @@ name: On Push Message
 on:
   push:
     branches:
-      - main  # or whatever branch you want
+      - main  # or your target branch
 
 jobs:
   sonar-job:
@@ -12,5 +12,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Print push message
-        run: echo "You pushed something."
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1 # e.g., us-east-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Confirm ECR connection
+        run: echo "Connected to ECR successfully."
