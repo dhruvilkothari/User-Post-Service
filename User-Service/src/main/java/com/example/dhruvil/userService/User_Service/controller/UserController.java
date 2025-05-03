@@ -1,5 +1,7 @@
 package com.example.dhruvil.userService.User_Service.controller;
 
+import com.example.dhruvil.userService.User_Service.dto.LoginDto;
+import com.example.dhruvil.userService.User_Service.dto.ResponseDto;
 import com.example.dhruvil.userService.User_Service.dto.UserDto;
 import com.example.dhruvil.userService.User_Service.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,4 +28,10 @@ public class UserController {
     public ResponseEntity<UserDto> createUser(@RequestBody(required = true)UserDto userDto) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return userService.createUser(userDto);
     }
+
+    @PostMapping("/public/login")
+    public ResponseEntity<ResponseDto> login(@RequestBody LoginDto userDto) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        return userService.login(userDto);
+    }
+
 }

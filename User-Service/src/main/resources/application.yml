@@ -2,6 +2,9 @@ spring:
   application:
     name: User-Service
 
+
+
+
   datasource:
     url: jdbc:mysql://localhost:3306/users?useSSL=false&serverTimezone=UTC
     username: root
@@ -32,3 +35,8 @@ eureka:
     hostname: localhost
     prefer-ip-address: true
     ip-address: 127.0.0.1
+
+security:
+  jwt:
+    secretKey: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+    expirationTime: 3600000
