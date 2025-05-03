@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,10 @@ public class PostService {
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
 
-    public ResponseEntity<PostDto> createPost(PostDto postDto) {
+
+    public ResponseEntity<PostDto> createPost(PostDto postDto, String email) {
         PostEntity postEntity = modelMapper.map(postDto, PostEntity.class);
+        postEntity.setEmail(email);
 //        log.info("Post Entity: {}", postEntity);
         PostEntity savedPost = postRepository.save(postEntity);
         PostDto savedPostDto = modelMapper.map(savedPost, PostDto.class);

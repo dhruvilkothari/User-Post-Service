@@ -16,8 +16,8 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/createPost")
-    public ResponseEntity<PostDto> createPost(@RequestBody(required = true) PostDto postDto) {
-        return postService.createPost(postDto);
+    public ResponseEntity<PostDto> createPost(@RequestBody(required = true) PostDto postDto, @RequestHeader("X-User-Email")String email) {
+        return postService.createPost(postDto,email);
     }
 
     @GetMapping("/getAllPost")

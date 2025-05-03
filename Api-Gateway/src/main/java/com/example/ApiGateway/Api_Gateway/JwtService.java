@@ -1,4 +1,4 @@
-package com.example.dhruvil.userService.User_Service.service;
+package com.example.ApiGateway.Api_Gateway;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -11,8 +11,8 @@ import java.util.Date;
 
 @Service
 public class JwtService {
-    @Value("${security.jwt.secretKey}")
-    private String secretKey;
+
+    private String secretKey = "3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b";
     @Value("${security.jwt.expirationTime}")
     private long jwtExpiration;
     private Key getSignInKey() {
@@ -40,15 +40,12 @@ public class JwtService {
         }
     }
     public String extractEmail(String token) {
-        System.out.println(token+" IN JWT SERVICE");
-        System.out.println(getSignInKey()+" IN JWT SERVICE");
-        String email =  Jwts.parserBuilder()
+        return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
-        return email;
     }
 
 }
